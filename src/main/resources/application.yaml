@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: tcp-test-application
+
+logging:
+  level:
+    com.qrroad.test: DEBUG
+    org.jpos: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+tcp:
+  test:
+    server:
+      port: 8583
+      host: 0.0.0.0
+      backlog: 100
+      auto-start: true
+      message-header-length: 2
+      encoding: UTF-8
+    client:
+      target-host: localhost
+      target-port: 8583
+      connect-timeout-ms: 30000
+      read-timeout-ms: 60000
+      keep-alive: true
+      message-header-length: 2
+      encoding: UTF-8
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
